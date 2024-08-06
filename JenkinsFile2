@@ -22,7 +22,9 @@ pipeline{
         }
         
         stage('Test'){
-            echo "Testing release ${RELEASE}"
+            steps {
+                echo "Testing release ${RELEASE}"
+            }
         }
 
         stage('Deploy'){
