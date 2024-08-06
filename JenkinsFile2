@@ -8,9 +8,9 @@ pipeline{
 
     stages{
 
-        agent any
-        
         stage('Build'){
+
+            agent any
 
             environment {
                 LOG_LEVEL = 'INFO'
@@ -31,7 +31,9 @@ pipeline{
             input{
                 message 'Deploy?'
                 ok 'Do it!'
-                parameters(name: 'TARGET_ENVIRONEMENT', defaultValue: 'PROD', description: 'Target deployment')                
+                parameters{
+                    string(name: 'TARGET_ENVIRONEMENT', defaultValue: 'PROD', description: 'Target deployment')
+                }                
             }
             steps{
                 echo "Deploying release ${RELEASE} to environment ${TARGET_ENVIRONEMENT}"
